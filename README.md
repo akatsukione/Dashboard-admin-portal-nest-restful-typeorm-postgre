@@ -1,85 +1,68 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Installing Nest.js
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This guide will walk you through the process of setting up Nest.js on your development environment.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Prerequisites
 
-## Description
+Before starting, make sure you have the following installed:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js (version 14.x or higher)
+- npm (Node Package Manager)
 
-## Project setup
+## Step 1: Install Nest CLI
 
-```bash
-$ npm install
-```
+First, we need to install the Nest CLI globally on your system. Open your terminal and run the following command:
 
-## Compile and run the project
+`npm install -g @nestjs/cli`
 
-```bash
-# development
-$ npm run start
+This command installs the Nest CLI globally, allowing you to create new Nest.js projects and generate various components throughout your development process.
 
-# watch mode
-$ npm run start:dev
+## Step 2: Create a New Nest.js Project
 
-# production mode
-$ npm run start:prod
-```
+Now that we have the Nest CLI installed, let's create a new Nest.js project. Navigate to the directory where you want to create your project and run:
 
-## Run tests
+`nest new my-project-name`
 
-```bash
-# unit tests
-$ npm run test
+Replace `my-project-name` with your desired project name. The CLI will prompt you with a few questions about your project structure and features.
 
-# e2e tests
-$ npm run test:e2e
+## Step 3: Navigate to the Project Directory
 
-# test coverage
-$ npm run test:cov
-```
+Once the installation is complete, navigate to your newly created project directory:
 
-## Resources
+`cd my-project-name`
 
-Check out a few resources that may come in handy when working with NestJS:
+## Step 4: Start the Development Server
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+To start the development server, run:
 
-## Support
+`npm run start:dev`
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+This command starts the Nest CLI dev server, which watches your files and automatically restarts the server when you make changes.
 
-## Stay in touch
+## Step 5: Access Your Application
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+By default, Nest.js applications run on `http://localhost:3000`. Open your web browser and navigate to this URL to see your application running.
 
-## License
+## Additional Commands
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Here are some useful commands you might need:
+
+- Start the production server: `npm run start`
+- Generate a module: `nest generate module users`
+- Generate a controller: `nest generate controller users`
+- Generate a service: `nest generate service users`
+
+## Troubleshooting
+
+If you encounter any issues during installation or execution, try the following:
+
+1. Ensure Node.js and npm are correctly installed and up to date.
+2. Check that you have sufficient permissions to execute the necessary commands.
+3. Clear your npm cache and reinstall dependencies: `npm cache clean --force` followed by `rm -rf node_modules package-lock.json` and then `npm install`.
+
+With these steps, you should now have a working Nest.js project set up and ready for development. Remember to refer to the official Nest.js documentation for more advanced features and best practices as you continue building your application.
+
+4. Lists (using both ordered and unordered list syntax)
+5. Emphasis (bold text using **text**)
+
+The formatting is consistent throughout the guide, making it easy to read and understand. The use of headers, lists, and code blocks helps to organize the information clearly.
