@@ -11,6 +11,7 @@ import {
 import { EmployeesService } from './employees.service';
 import { Employee } from './employee.entity';
 
+//this means the route is "employees"
 @Controller('employees')
 export class EmployeesController {
   constructor(private readonly employeesService: EmployeesService) {}
