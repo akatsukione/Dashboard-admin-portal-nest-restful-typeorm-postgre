@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Employee } from './employee.entity';
+import { Employee } from './entities/employee.entity';
+import { CreateEmployeeDto } from './dto/create-employee';
+import { UpdateEmployeeDto } from './dto/update-employee';
 
 // Adding @Injectable() to tell Nestjs that this is a service
 @Injectable()
@@ -13,24 +15,28 @@ export class EmployeesService {
     private employeeRepository: Repository<Employee>,
   ) {}
 
+  //find all employees
   async findAll(): Promise<Employee[]> {
     return this.employeeRepository.find();
   }
 
+  //find employee by id
   async findOne(id: number): Promise<Employee> {
     return this.employeeRepository.findOne({ where: { id } });
   }
 
-  async create(employee: Partial<Employee>): Promise<Employee> {
-    const newEmployee = this.employeeRepository.create(employee);
-    return this.employeeRepository.save(newEmployee);
+  //create employee
+  async create(employee: CreateEmployeeDto): Promise<Employee> {
+    return this.employeeRepository.save(employee);
   }
 
-  async update(id: number, employee: Partial<Employee>): Promise<Employee> {
+  //update employee
+  async update(id: number, employee: UpdateEmployeeDto): Promise<Employee> {
     await this.employeeRepository.update(id, employee);
     return this.employeeRepository.findOne({ where: { id } });
   }
 
+  //delete employee
   async delete(id: number): Promise<void> {
     await this.employeeRepository.delete(id);
   }

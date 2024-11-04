@@ -1,7 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 import * as dotenv from 'dotenv';
-import { Employee } from 'src/employees/employee.entity';
+import { Employee } from 'src/employees/entities/employee.entity';
 dotenv.config();
 
 class ConfigService {
@@ -37,7 +37,7 @@ class ConfigService {
 
       entities: [Employee],
 
-      synchronize: false,
+      synchronize: true,
     };
   }
 }
