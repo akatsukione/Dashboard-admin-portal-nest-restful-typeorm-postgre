@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Not } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Employee } from './entities/employee.entity';
 import { CreateEmployeeDto } from './dto/create-employee';
@@ -31,22 +31,28 @@ export class EmployeesService {
     // Hash the password before saving
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(createEmployeeDto.password, salt);
-    
+
     // Create new employee with hashed password
     const employee = this.employeeRepository.create({
       ...createEmployeeDto,
-      password: hashedPassword
+      password: hashedPassword,
     });
-    
+
     return this.employeeRepository.save(employee);
   }
 
   //update employee
-  async update(id: number, updateEmployeeDto: UpdateEmployeeDto): Promise<Employee> {
-    // If password is included in the update, hash it
+  async update(
+    id: number,
+    updateEmployeeDto: UpdateEmployeeDto,
+  ): Promise<Employee> {
+    // Handle password update if needed
     if (updateEmployeeDto.password) {
       const salt = await bcrypt.genSalt();
-      updateEmployeeDto.password = await bcrypt.hash(updateEmployeeDto.password, salt);
+      updateEmployeeDto.password = await bcrypt.hash(
+        updateEmployeeDto.password,
+        salt,
+      );
     }
 
     await this.employeeRepository.update(id, updateEmployeeDto);
