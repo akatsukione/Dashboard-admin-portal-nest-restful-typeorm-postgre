@@ -13,7 +13,7 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   // Swagger UI
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('apiDocs', app, document);
   // Start the server
   await app.listen(3333);
 }
