@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 import { Employee } from './entities/employee.entity';
 import { CreateEmployeeDto } from './dto/create-employee';
 import { UpdateEmployeeDto } from './dto/update-employee';
@@ -26,13 +27,29 @@ export class EmployeesService {
   }
 
   //create employee
-  async create(employee: CreateEmployeeDto): Promise<Employee> {
+  async create(createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
+    // Hash the password before saving
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(createEmployeeDto.password, salt);
+    
+    // Create new employee with hashed password
+    const employee = this.employeeRepository.create({
+      ...createEmployeeDto,
+      password: hashedPassword
+    });
+    
     return this.employeeRepository.save(employee);
   }
 
   //update employee
-  async update(id: number, employee: UpdateEmployeeDto): Promise<Employee> {
-    await this.employeeRepository.update(id, employee);
+  async update(id: number, updateEmployeeDto: UpdateEmployeeDto): Promise<Employee> {
+    // If password is included in the update, hash it
+    if (updateEmployeeDto.password) {
+      const salt = await bcrypt.genSalt();
+      updateEmployeeDto.password = await bcrypt.hash(updateEmployeeDto.password, salt);
+    }
+
+    await this.employeeRepository.update(id, updateEmployeeDto);
     return this.employeeRepository.findOne({ where: { id } });
   }
 
