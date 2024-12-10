@@ -31,11 +31,12 @@ export class EmployeesService {
     // Hash the password before saving
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(createEmployeeDto.password, salt);
-
+    const createdAt = new Date();
     // Create new employee with hashed password
     const employee = this.employeeRepository.create({
       ...createEmployeeDto,
       password: hashedPassword,
+      createdAt,
     });
 
     return this.employeeRepository.save(employee);
@@ -54,8 +55,11 @@ export class EmployeesService {
         salt,
       );
     }
-
-    await this.employeeRepository.update(id, updateEmployeeDto);
+    const updatedAt = new Date();
+    await this.employeeRepository.update(id, {
+      ...updateEmployeeDto,
+      updatedAt,
+    });
     return this.employeeRepository.findOne({ where: { id } });
   }
 
