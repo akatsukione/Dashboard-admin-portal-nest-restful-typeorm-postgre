@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Not } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Employee } from './entities/employee.entity';
-import { CreateEmployeeDto } from './dto/create-employee';
-import { UpdateEmployeeDto } from './dto/update-employee';
+import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { UpdateEmployeeDto } from './dto/update-employee.dto';
 
 // Adding @Injectable() to tell Nestjs that this is a service
 @Injectable()
