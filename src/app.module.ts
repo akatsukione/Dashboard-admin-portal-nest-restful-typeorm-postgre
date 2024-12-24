@@ -4,11 +4,13 @@ import { AppService } from './app.service';
 import { EmployeesModule } from './employees/employees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configService } from './config/config.service';
+import { AuthModule } from './auth/auth.module';
 @Module({
   // Import the EmployeesModule
   imports: [
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
     EmployeesModule,
+    AuthModule,
   ],
   // Define the controllers
   controllers: [AppController],

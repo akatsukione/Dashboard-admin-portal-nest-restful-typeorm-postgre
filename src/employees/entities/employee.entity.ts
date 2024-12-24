@@ -31,15 +31,12 @@ export class Employee {
   })
   password: string;
 
-  // @BeforeInsert()
-  // async hashPassword() {
-  //   if (this.password !== DEFAULT_HASHED_PASSWORD) {
-  //     const salt = await bcrypt.genSalt();
-  //     this.password = await bcrypt.hash(this.password, salt);
-  //   }
-  // }
+  @Column({ nullable: true })
+  createdAt: Date;
 
-  // async validatePassword(password: string): Promise<boolean> {
-  //   return bcrypt.compare(password, this.password);
-  // }
+  @Column({ nullable: true })
+  updatedAt: Date;
+
+  @Column({ nullable: true })
+  deletedAt: Date;
 }

@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Not } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Employee } from './entities/employee.entity';
-import { CreateEmployeeDto } from './dto/create-employee';
-import { UpdateEmployeeDto } from './dto/update-employee';
+import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { UpdateEmployeeDto } from './dto/update-employee.dto';
 
 // Adding @Injectable() to tell Nestjs that this is a service
 @Injectable()
@@ -31,11 +31,12 @@ export class EmployeesService {
     // Hash the password before saving
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(createEmployeeDto.password, salt);
-
+    const createdAt = new Date();
     // Create new employee with hashed password
     const employee = this.employeeRepository.create({
       ...createEmployeeDto,
       password: hashedPassword,
+      createdAt,
     });
 
     return this.employeeRepository.save(employee);
@@ -55,7 +56,13 @@ export class EmployeesService {
       );
     }
 
-    await this.employeeRepository.update(id, updateEmployeeDto);
+    const updatedAt = new Date();
+
+    await this.employeeRepository.update(id, {
+      ...updateEmployeeDto,
+      updatedAt,
+    });
+
     return this.employeeRepository.findOne({ where: { id } });
   }
 

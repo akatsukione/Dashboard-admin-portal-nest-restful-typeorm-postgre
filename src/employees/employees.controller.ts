@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { EmployeesService } from './employees.service';
 import { Employee } from './entities/employee.entity';
-import { CreateEmployeeDto } from './dto/create-employee';
-import { UpdateEmployeeDto } from './dto/update-employee';
+import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { UpdateEmployeeDto } from './dto/update-employee.dto';
 
 //this means the route is "employees"
 @Controller('employees')
