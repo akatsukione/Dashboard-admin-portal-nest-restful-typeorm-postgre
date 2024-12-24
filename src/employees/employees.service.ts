@@ -55,11 +55,14 @@ export class EmployeesService {
         salt,
       );
     }
+
     const updatedAt = new Date();
+
     await this.employeeRepository.update(id, {
       ...updateEmployeeDto,
       updatedAt,
     });
+
     return this.employeeRepository.findOne({ where: { id } });
   }
 
